@@ -1,0 +1,89 @@
+:root {
+  --bg: #e9ecef;
+  --body: #1f2a37;
+  --screen: #c9d6c3;
+  --screen-ink: #1b2a1b;
+  --key: #f6f7f8;
+  --key-ink: #1f2a37;
+  --op: #3b5bdb;
+  --fn: #ced4da;
+  --eq: #e8590c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12161b;
+    --body: #222a33;
+    --screen: #2f3d2f;
+    --screen-ink: #c8f0c0;
+    --key: #333d48;
+    --key-ink: #eef1f4;
+    --op: #4c6ef5;
+    --fn: #46525f;
+    --eq: #f76707;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+}
+
+.calc {
+  width: min(92vw, 340px);
+  padding: 18px;
+  border-radius: 24px;
+  background: var(--body);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .22);
+}
+
+.screen {
+  background: var(--screen);
+  color: var(--screen-ink);
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  text-align: right;
+  min-height: 92px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.history { font-size: 14px; opacity: .65; min-height: 20px; word-break: break-all; }
+.current { font-size: 38px; font-weight: 600; word-break: break-all; line-height: 1.2; }
+
+.keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+
+button {
+  font: inherit;
+  font-size: 20px;
+  font-weight: 500;
+  height: 58px;
+  border: 0;
+  border-radius: 14px;
+  cursor: pointer;
+  background: var(--key);
+  color: var(--key-ink);
+  transition: transform .08s ease, filter .15s ease;
+}
+
+button:hover { filter: brightness(1.06); }
+button:active { transform: scale(.95); }
+button:focus-visible { outline: 3px solid var(--op); outline-offset: 2px; }
+
+.fn { background: var(--fn); }
+.op { background: var(--op); color: #fff; }
+.eq { background: var(--eq); color: #fff; }
+.zero { grid-column: span 2; }
+
+@media (prefers-reduced-motion: reduce) {
+  button { transition: none; }
+}
